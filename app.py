@@ -51,10 +51,11 @@ if file is not None and st.session_state['ss_button']:
     st.subheader('')
     st.header('Most Active Users in Chat :')
 
-    bar_fig = px.bar(processor.top_user(df), x='message', y='user')
+    bar_fig = px.bar(processor.top_user(df), x='message', y='user', orientation='h')
     bar_fig.update_layout(xaxis=dict(fixedrange=True),yaxis=dict(fixedrange=True), autosize=True,
                      xaxis_title='No. of Messages', yaxis_title='Top Users')
     bar_fig.update_traces(marker_color='gold', marker_line_color='black')
+    bar_fig.update_yaxes(type='category')
     st.plotly_chart(bar_fig, config={'scrollZoom': False, 'responsive': True})
     #
     #
