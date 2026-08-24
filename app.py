@@ -168,4 +168,24 @@ if file is not None and st.session_state['ss_button']:
     })
 
 else:
-    st.subheader('Export your Chat from WhatsApp and Upload Chat .txt file in the Sidebar for Analysis')
+    st.header('Follow the Steps and Upload Chat .txt file in the Sidebar for Analysis')
+
+    col1,col2 = st.columns(2)
+    with col1:
+        st.subheader('Step 1 :')
+        st.write('Click the Three Dots on Chat')
+        st.image('three-dot-img.jpeg', width=500)
+    with col2:
+        st.subheader('Step 2 :')
+        st.write('Click on More   >')
+        st.image('more-img.jpeg', width=500)
+
+    col1, col2 = st.columns(2)
+    with col1:
+        st.subheader('Step 3 :')
+        st.write('Click on Export Chat')
+        st.image('export-chat-img.jpeg', width=500)
+    with col2:
+        st.subheader('Step 4 :')
+        st.write('Click on Without Media')
+        st.image('without-media-img.jpeg', width=500)
