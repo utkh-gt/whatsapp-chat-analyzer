@@ -1,3 +1,3 @@
-App Deployed on :-
+## 🚀 Live Demo
 
-https://whatsapp-chat-analyzing-machine.streamlit.app/
+[**Open WhatsApp Chat Analyzer →**](https://whatsapp-chat-analyzing-machine.streamlit.app/)
