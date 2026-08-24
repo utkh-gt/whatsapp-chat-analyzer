@@ -189,3 +189,7 @@ else:
         st.subheader('Step 4 :')
         st.write('Click on Without Media')
         st.image('without-media-img.jpeg', width=500)
+
+    st.subheader('Step 5 :')
+    st.write('Send the .zip File to Another Chat and Extract the .txt file')
+    st.image('zip-file-img.jpeg', width=500)
