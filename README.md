@@ -1,3 +1,3 @@
 ## Live Demo :-
 
-[**Open WhatsApp Chat Analyzer →**](https://whatsapp-chat-analyzing-machine.streamlit.app/?embed=true)
+[**Open WhatsApp Chat Analyzer →**](https://whatsapp-chat-analyzing-machine.streamlit.app/?utm_medium=oembed)
