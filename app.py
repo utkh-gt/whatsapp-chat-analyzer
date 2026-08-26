@@ -89,6 +89,29 @@ if file is not None and st.session_state['ss_button']:
     #
     #
     st.subheader('')
+    st.header(f'Most Frequently Used Phrases ({selected_user}) :')
+    phrase_df = processor.ngrams_df(user_df)
+
+    if phrase_df.shape[0] != 0:
+        col1, col2 = st.columns([2,1])
+
+        with col1:
+            bar_fig_3 = px.bar(phrase_df.head(10).sort_values(by='Count'), x='Count', y='Phrase', orientation='h')
+            bar_fig_3.update_layout(xaxis=dict(fixedrange=True), yaxis=dict(fixedrange=True), autosize=True,
+                                    xaxis_title='Total Count', yaxis_title='Common Phrases Used')
+            bar_fig_3.update_traces(marker_color='gold', marker_line_color='black')
+            st.plotly_chart(bar_fig_3, config=mobile_config)
+        with col2:
+            st.dataframe(phrase_df.head(20), hide_index=True, column_config={
+                             col: st.column_config.Column(alignment="center")
+                             for col in phrase_df.columns
+                         })
+    else:
+        st.write('')
+        st.warning(f'No Commonly used Phrases found for {selected_user}')
+    #
+    #
+    st.subheader('')
     st.header(f'Most Frequently used Emojis in Chat ({selected_user}) :')
     col1,col2 = st.columns([2,1])
 
@@ -103,8 +126,7 @@ if file is not None and st.session_state['ss_button']:
         pie_fig.update_traces(pull=[0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02])
         st.plotly_chart(pie_fig, config={'scrollZoom': False, 'responsive': True})
     with col2:
-        st.dataframe(emoji_df, hide_index=True,
-            column_config={
+        st.dataframe(emoji_df, hide_index=True, column_config={
                 col: st.column_config.Column(alignment="center")
                 for col in emoji_df.columns
             })
@@ -121,6 +143,10 @@ if file is not None and st.session_state['ss_button']:
     ax.set_xlabel('Hours in 24 Hr Format', color='white')
     ax.set_ylabel('Days in Week', color='white')
     ax.tick_params(colors='white', which='both')
+
+    # changing cbar text color
+    cbar = ax.collections[0].colorbar
+    cbar.ax.tick_params(labelsize=10, colors='white')
     st.pyplot(heat_fig)
     #
     #

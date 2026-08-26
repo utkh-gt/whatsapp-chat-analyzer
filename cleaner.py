@@ -47,3 +47,21 @@ def txt_to_df(data):
     df["month"] = pd.Categorical(df["month"], categories=month_order, ordered=True)
 
     return df
+
+def text_cleaner_ngram(text):
+    text = str(text)
+    text = text.lower()
+
+    text = re.sub(r'<media omitted>', '', text)
+    text = re.sub(r'this message was edited', '', text)
+    text = re.sub(r'this message was deleted', '', text)
+    text = re.sub(r'you deleted this message', '', text)
+
+    text = re.sub(r'https?://\S+|www\.\S+', '', text)
+
+    # Remove punctuation and emojis
+    text = re.sub(r'[^\w\s]', '', text)
+
+    text = re.sub(r'\s+', ' ', text)
+
+    return text.strip()

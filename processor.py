@@ -4,6 +4,8 @@ import PIL.Image
 import emoji as em
 from collections import Counter
 import pandas as pd
+import cleaner
+from sklearn.feature_extraction.text import CountVectorizer
 
 def user_based_df(df, selected_user):
     if selected_user != 'Overall':
@@ -94,3 +96,28 @@ def heat_pivot_table(df):
     pt = new_df.pivot_table(index='week_day', columns='hour', values='message', aggfunc='count', observed=False).fillna(0).astype(int)
 
     return pt
+
+def ngrams_df(df):
+    ngram_df = df.copy()
+    ngram_df['clean_message'] = ngram_df['message'].apply(cleaner.text_cleaner_ngram)
+
+    # Removed empty messages
+    ngram_df = ngram_df[ngram_df['clean_message'] != '']
+
+    vectorizer = CountVectorizer(ngram_range=(2, 3), min_df=3)
+
+    try:
+        learn_phrase = vectorizer.fit_transform(
+            ngram_df['clean_message']
+        )
+
+    except ValueError:
+        return pd.DataFrame(columns=['Phrase', 'Count'])
+
+    phrase_names = vectorizer.get_feature_names_out()
+
+    phrase_count = learn_phrase.sum(axis=0).A1
+
+    phrase_df = pd.DataFrame({'Phrase': phrase_names, 'Count': phrase_count}).sort_values(by='Count',ascending=False)
+
+    return phrase_df
