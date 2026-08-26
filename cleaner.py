@@ -46,6 +46,8 @@ def txt_to_df(data):
     df["week_day"] = pd.Categorical(df["week_day"], categories=week_day_order, ordered=True)
     df["month"] = pd.Categorical(df["month"], categories=month_order, ordered=True)
 
+    df = df[df['message'] != '']
+
     return df
 
 def text_cleaner_ngram(text):
