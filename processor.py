@@ -100,7 +100,8 @@ def heat_pivot_table(df):
 def meaningful_phrase(phrase):
     hinglish_stopwords = {'hai','hain','tha','thi','the','rha','rhe','rhi','raha','rahi','rahe','kr','kar','kya','ke','ki','ka','ko',
                           'se','me','mein','ye','yeh','woh','wo','to','bhi','hi','ho','hoga','hogi','hoge','hua','karo','krna','karna',
-                          'krne','karne','kre','krr','kro','kr','wala','wali','wale','wle','wli','wle','wla','kisi'}
+                          'krne','karne','kre','krr','kro','kr','wala','wali','wale','wle','wli','wle','wla','kisi','tm','hm','nhi','ni',
+                          'aa','aae','gya','gyi','gae','gaye','gye','liye','liya','le','lee','li','lae'}
 
     words = phrase.split()
 
