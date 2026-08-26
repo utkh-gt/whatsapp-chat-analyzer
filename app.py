@@ -200,7 +200,7 @@ if file is not None and st.session_state['ss_button']:
 
 else:
     with landing_page.container():
-        st.header('Follow the Steps and Upload Chat .txt file in the Sidebar for Analysis')
+        st.header('Follow the Steps and Upload Chat .txt file in the Sidebar(>>) for Analysis')
 
         col1,col2 = st.columns(2)
         with col1:
