@@ -34,7 +34,14 @@ def monthly_frequency(df, timeline):
 
 def wordcloud(df, selected_user):
     custom_stopwords = STOPWORDS.union(
-        {"Media", "omitted", "media", "omitted\n", "message", "edited", " This", "was", "hai", "h", "deleted"})
+        {"Media", "omitted", "media", "omitted\n", "message", "edited", " This", "was", "hai", "h", "deleted",
+         'hai', 'hain', 'tha', 'thi', 'the', 'rha', 'rhe', 'rhi', 'raha', 'rahi', 'rahe', 'kr', 'kar', 'kya', 'ke',
+         'ki', 'ka', 'ko',
+         'se', 'me', 'mein', 'ye', 'yeh', 'woh', 'wo', 'to', 'bhi', 'hi', 'ho', 'hoga', 'hogi', 'hoge', 'hua', 'karo',
+         'krna', 'karna',
+         'krne', 'karne', 'kre', 'krr', 'kro', 'kr', 'wala', 'wali', 'wale', 'wle', 'wli', 'wle', 'wla', 'kisi', 'tm',
+         'hm', 'to', 'toh',
+         'aa', 'aae', 'gya', 'gyi', 'gae', 'gaye', 'gye', 'liye', 'liya', 'le', 'lee', 'li', 'lae'})
     chat_mask = np.array(PIL.Image.open('chat-icon.jpg').convert('RGB'))
     chat_mask = np.where(chat_mask > 220, 255, chat_mask)
 
