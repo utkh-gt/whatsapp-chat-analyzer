@@ -97,6 +97,19 @@ def heat_pivot_table(df):
 
     return pt
 
+def meaningful_phrase(phrase):
+    hinglish_stopwords = {'hai','hain','tha','thi','the','rha','rhe','rhi','raha','rahi','rahe','kr','kar','kya','ke','ki','ka','ko',
+                          'se','me','mein','ye','yeh','woh','wo','to','bhi','hi','ho','hoga','hogi','hoge','hua','karo','krna','karna',
+                          'krne','karne','kre','krr','kro','kr','wala','wali','wale','wle','wli','wle','wla','kisi'}
+
+    words = phrase.split()
+
+    # Remove phrase if every word is generic
+    if all(word in hinglish_stopwords for word in words):
+        return False
+
+    return True
+
 def ngrams_df(df):
     ngram_df = df.copy()
     ngram_df['clean_message'] = ngram_df['message'].apply(cleaner.text_cleaner_ngram)
@@ -119,5 +132,7 @@ def ngrams_df(df):
     phrase_count = learn_phrase.sum(axis=0).A1
 
     phrase_df = pd.DataFrame({'Phrase': phrase_names, 'Count': phrase_count}).sort_values(by='Count',ascending=False)
+
+    phrase_df = phrase_df[phrase_df['Phrase'].apply(meaningful_phrase)]
 
     return phrase_df
